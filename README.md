@@ -9,4 +9,4 @@ Simple Twitter Client
     * User can then enter a new tweet and post this to twitter
     * User is taken back to home timeline with new tweet visible in timeline
 
-<img src="https://github.com/jrea/simpletwitter/twitter_client.gif" />
+<img src="https://github.com/jrea/simpletwitter/blob/master/twitter_client.gif" />
