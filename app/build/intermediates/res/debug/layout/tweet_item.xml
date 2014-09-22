@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_profileImg"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/username"
+        android:id="@+id/tv_screenname"
+        android:layout_toRightOf="@+id/iv_profileImg"
+        android:layout_toEndOf="@+id/iv_profileImg"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:textStyle="bold" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/tv_compose_username"
+        android:layout_toRightOf="@+id/tv_screenname"
+        android:layout_toEndOf="@+id/tv_screenname"
+        android:layout_marginRight="15dp"
+        android:textColor="#ffbebebe"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/tv_screenname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/time_ago"
+        android:id="@+id/tv_timeAgo"
+        android:layout_toEndOf="@+id/tv_compose_username"
+        android:textColor="#ffbebebe"
+        android:gravity="center_vertical|right"
+        android:textSize="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/tv_compose_username"
+        android:layout_toRightOf="@+id/tv_compose_username"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/body"
+        android:id="@+id/tv_body"
+        android:layout_toEndOf="@+id/iv_profileImg"
+        android:layout_toRightOf="@+id/iv_profileImg"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/tv_screenname"
+        android:layout_marginBottom="10dp" />
+
+</RelativeLayout><!-- From: file:/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/src/main/res/layout/tweet_item.xml -->
