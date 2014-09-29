@@ -18,4 +18,4 @@ Simple Twitter Client
    * User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
    * Profile view should include that user's timeline
 
-<img src="https://github.com/jrea/simpletwitter/twitter_client.gif" />
+<img src="https://github.com/jrea/simpletwitter/blob/master/twitter_client.gif" />
