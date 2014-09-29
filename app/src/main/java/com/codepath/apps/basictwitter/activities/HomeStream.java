@@ -1,9 +1,11 @@
 package com.codepath.apps.basictwitter.activities;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,10 @@ import com.codepath.apps.basictwitter.EndlessScrollListener;
 import com.codepath.apps.basictwitter.RestClientApp;
 import com.codepath.apps.basictwitter.TwitterRestClient;
 import com.codepath.apps.basictwitter.adapters.TweetArrayAdapter;
+import com.codepath.apps.basictwitter.fragments.HomeStreamFragment;
+import com.codepath.apps.basictwitter.fragments.MentionsTimelineFragment;
+import com.codepath.apps.basictwitter.fragments.TweetsListFragment;
+import com.codepath.apps.basictwitter.listeners.FragmentTabListener;
 import com.codepath.apps.basictwitter.models.Tweet;
 import com.codepath.apps.basictwitter.models.User;
 import com.codepath.apps.restclienttemplate.R;
@@ -27,31 +33,52 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HomeStream extends Activity {
+public class HomeStream extends FragmentActivity {
     private static final int COMPOSE_TWEET = 0;
     private TwitterRestClient client;
-    private ArrayList<Tweet> tweets;
-    private ArrayAdapter<Tweet> aTweets;
-    private ListView lvTweets;
-    private int page;
+    private HomeStreamFragment homeStreamFragment;
+
+
     private User tweetUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_stream);
         client = RestClientApp.getRestClient();
-        populateTimeline(0);
-        lvTweets = (ListView) findViewById(R.id.lv_tweets);
-        lvTweets.setOnScrollListener(new EndlessScrollListener() {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount) {
-            populateTimeline(page);
-            }
-        });
-        tweets = new ArrayList<Tweet>();
-        aTweets = new TweetArrayAdapter(this, tweets);
-        lvTweets.setAdapter(aTweets);
+
         setupTweetUser();
+        setupTabs();
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void setupTabs() {
+        ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(true);
+
+        ActionBar.Tab tab1 = actionBar
+                .newTab()
+                .setText("Home")
+                .setIcon(R.drawable.ic_home)
+                .setTag("HomeTimelineFragment")
+                .setTabListener(
+                        new FragmentTabListener<HomeStreamFragment>(R.id.flContainer, this, "home",
+                                HomeStreamFragment.class));
+
+        actionBar.addTab(tab1);
+        actionBar.selectTab(tab1);
+
+        ActionBar.Tab tab2 = actionBar
+                .newTab()
+                .setText("Mentions")
+                .setIcon(R.drawable.ic_mentions)
+                .setTag("MentionsTimelineFragment")
+                .setTabListener(
+                        new FragmentTabListener<MentionsTimelineFragment>(R.id.flContainer, this, "mentions",
+                                MentionsTimelineFragment.class));
+
+        actionBar.addTab(tab2);
     }
 
     private void setupTweetUser() {
@@ -63,24 +90,7 @@ public class HomeStream extends Activity {
         });
     }
 
-    public void populateTimeline(int p) {
-        page = p;
-        client.getHomeTimeline(page, new JsonHttpResponseHandler() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onSuccess(JSONArray json) {
-                //get the username of the current user out of this query
-                aTweets.addAll(Tweet.fromJSONArray(json));
-            }
 
-            @Override
-            public void onFailure(Throwable throwable, String s) {
-                Log.d("debug", throwable.toString());
-                Log.d("debug", s.toString());
-                super.onFailure(throwable, s);
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,10 +121,19 @@ public class HomeStream extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == COMPOSE_TWEET) {
             Tweet twVal = (Tweet) data.getExtras().getSerializable("tweet");
-            aTweets.insert(twVal, 0);
+            TweetsListFragment fragment = (TweetsListFragment) getSupportFragmentManager().findFragmentById(R.id.flContainer);
+            fragment.insert(twVal, 0);
 
         } else if (resultCode == RESULT_CANCELED && requestCode == COMPOSE_TWEET) {
 
         }
+    }
+
+    public void onProfile(MenuItem item) {
+        Intent i = new Intent(HomeStream.this, ProfileActivity.class);
+        String userid = tweetUser.getStringUid();
+        i.putExtra("userid", userid);
+        i.putExtra("screenname", tweetUser.getScreenName());
+        startActivity(i);
     }
 }

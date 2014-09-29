@@ -50,16 +50,16 @@
         revision="20.0.0"
         sha1="6e0748acc9e7be0695de0d38016d260df52d9167"/>
     <item
-        dex="/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/build/intermediates/pre-dexed/debug/classes-a515e899492c0a4f80bde32197d3aa6d9bc4f6b6.jar"
-        jar="/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
-    <item
         dex="/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/build/intermediates/pre-dexed/debug/ActiveAndroid-3.1-adcddac4c58-4d21b3faf93ccd8871fbb7e83835e0a14e2d717b.jar"
         jar="/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/libs/ActiveAndroid-3.1-adcddac4c58.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="e550c03ed8bcfe3b9f97d8c5ce6e8ee305f3beed"/>
+    <item
+        dex="/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/build/intermediates/pre-dexed/debug/classes-a515e899492c0a4f80bde32197d3aa6d9bc4f6b6.jar"
+        jar="/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
 
 </pre-dex-items>

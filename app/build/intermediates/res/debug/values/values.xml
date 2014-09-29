@@ -551,12 +551,19 @@
     <string name="body">This is the body of the tweet</string>
     <string name="bt_cancel">Cancel</string>
     <string name="bt_tweet">Tweet</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
     <string name="login_label">Connect to Twitter</string>
+    <string name="name">Name</string>
+    <string name="profile">profile</string>
+    <string name="tagline">tag line</string>
     <string name="time_ago">-time ago</string>
     <string name="title_activity_compose_tweet">Compose</string>
     <string name="title_activity_home_stream">Timeline</string>
     <string name="title_activity_photos">Flickr Photos</string>
+    <string name="title_activity_profile">ProfileActivity</string>
     <string name="username">\@username</string>
     <!-- From: file:/Users/josephr/AndroidStudioProjects/SimpleTwitterClient/app/src/main/res/values/styles.xml -->
     <eat-comment />

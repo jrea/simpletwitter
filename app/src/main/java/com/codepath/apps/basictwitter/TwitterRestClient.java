@@ -54,6 +54,34 @@ public class TwitterRestClient extends OAuthBaseClient {
         RequestParams params = new RequestParams();
         params.put("include_entities", "false");
         params.put("skip_status", "true");
-        client.post(apiUrl, params, handler);
+        client.get(apiUrl, params, handler);
+    }
+
+    public void getShowUser(String user_id, String screen_name, JsonHttpResponseHandler handler) {
+        String apiUrl = getApiUrl("users/show.json");
+        RequestParams params = new RequestParams();
+        params.put("user_id", user_id);
+        params.put("screen_name", screen_name);
+        client.get(apiUrl, params, handler);
+    }
+
+    public void getMentionsTimeline(int page, JsonHttpResponseHandler handler) {
+        String apiUrl = getApiUrl("statuses/mentions_timeline.json");
+        RequestParams params = new RequestParams();
+        params.put("page", String.valueOf(page));
+        client.get(apiUrl, params, handler);
+    }
+
+    public void getUserTimeline(JsonHttpResponseHandler handler) {
+        String url = getApiUrl("statuses/user_timeline.json");
+        client.get(url, null, handler);
+    }
+
+    public void getUserTimeline(int page, String screen_name, JsonHttpResponseHandler handler) {
+        String url = getApiUrl("statuses/user_timeline.json");
+        RequestParams params = new RequestParams();
+        params.put("page", String.valueOf(page));
+        params.put("screen_name", screen_name);
+        client.get(url, params, handler);
     }
 }
